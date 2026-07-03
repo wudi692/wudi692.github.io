@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>微博授权结果 · 微博公开内容传播结构研究</title>
+<style>
+body{margin:0;font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;color:#26303a;background:#fafbfc;line-height:1.85}
+main{max-width:640px;margin:0 auto;padding:60px 20px}
+.card{background:#fff;border:1px solid #e3e8ee;border-radius:8px;padding:30px 34px}
+h1{font-size:20px;margin:0 0 16px}
+.ok h1{color:#1e7a46}
+.fail h1{color:#a33a2e}
+p{margin:10px 0}
+a{color:#1f3a5f}
+.muted{color:#5b6b7b;font-size:13px;margin-top:22px}
+</style>
+</head>
+<body>
+<main>
+<div class="card" id="result">
+<h1>正在读取授权结果…</h1>
+</div>
+<p class="muted">本页面为「微博公开内容传播结构研究」项目的 OAuth 授权回调页。本页面不存储任何密钥；授权码的后续处理由项目组在受控研究环境中完成。</p>
+</main>
+<script>
+(function(){
+  var q = new URLSearchParams(window.location.search);
+  var el = document.getElementById('result');
+  if (q.get('code')) {
+    el.className = 'card ok';
+    el.innerHTML = '<h1>微博授权已完成</h1>'
+      + '<p>您已返回「微博公开内容传播结构研究」项目页面。本授权仅用于学术研究接口调用，不会代替您发布内容或读取非公开信息。</p>'
+      + '<p>您可以随时在微博的授权管理页面取消授权。</p>'
+      + '<p><a href="/weibo-risk/">返回项目首页</a> · <a href="/weibo-risk/delete-request.html">取消授权与数据删除说明</a></p>';
+  } else {
+    el.className = 'card fail';
+    el.innerHTML = '<h1>微博授权未完成</h1>'
+      + '<p>可能原因包括：您取消了授权、授权已过期或回调参数无效。</p>'
+      + '<p>您可以返回项目首页重新授权，或联系项目组。</p>'
+      + '<p><a href="/weibo-risk/">返回项目首页</a> · <a href="mailto:xxx@xxx.edu.cn">联系项目组</a></p>';
+  }
+})();
+</script>
+</body>
+</html>
